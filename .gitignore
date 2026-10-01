@@ -1,0 +1,36 @@
+# Root dependencies
+node_modules/
+
+# Backend
+backend/node_modules/
+backend/dist/
+backend/.env
+backend/.env.*
+!backend/.env.example
+backend/tsconfig.build.tsbuildinfo
+
+# Prisma / AI tool helper directories
+backend/.agents/
+backend/.claude/
+backend/.cursor/
+backend/.devin/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+
+# Build / test output
+coverage/
+*.log
+*.tsbuildinfo
+
+# Archives
+*.zip
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/

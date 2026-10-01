@@ -1,0 +1,472 @@
+.activity-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.activity-summary-card {
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.activity-summary-card span,
+.activity-summary-card strong {
+  display: block;
+}
+
+.activity-summary-card span {
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.activity-summary-card strong {
+  color: var(--text);
+  font-size: 21px;
+  line-height: 1.2;
+}
+
+.activity-summary-card .activity-summary-success {
+  color: var(--green);
+}
+
+.activity-summary-card .activity-summary-warning {
+  color: var(--yellow);
+}
+
+.activity-summary-card .activity-summary-danger {
+  color: var(--red);
+}
+
+.activity-toolbar {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) 210px;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.activity-toolbar input,
+.activity-toolbar select {
+  min-height: 42px;
+  padding: 9px 11px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 11px;
+}
+
+.activity-toolbar input:focus,
+.activity-toolbar select:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+.activity-toolbar input::placeholder {
+  color: var(--muted-light);
+}
+
+.activity-result-count {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.activity-integration strong,
+.activity-integration span {
+  display: block;
+}
+
+.activity-integration strong {
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.activity-integration span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.activity-request {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.activity-request strong {
+  color: var(--blue);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.activity-request code {
+  color: var(--text);
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    monospace;
+  font-size: 10px;
+}
+
+.activity-status-success,
+.activity-status-info,
+.activity-status-warning,
+.activity-status-danger,
+.activity-status-neutral {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.activity-status-success {
+  color: var(--green);
+}
+
+.activity-status-info {
+  color: var(--blue);
+}
+
+.activity-status-warning {
+  color: var(--yellow);
+}
+
+.activity-status-danger {
+  color: var(--red);
+}
+
+.activity-status-neutral {
+  color: var(--muted);
+}
+
+.activity-outcome-success,
+.activity-outcome-warning,
+.activity-outcome-danger {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.activity-outcome-success {
+  color: var(--green);
+}
+
+.activity-outcome-warning {
+  color: var(--yellow);
+}
+
+.activity-outcome-danger {
+  color: var(--red);
+}
+
+.activity-duration {
+  color: var(--text-soft);
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.activity-date strong,
+.activity-date span {
+  display: block;
+  white-space: nowrap;
+}
+
+.activity-date strong {
+  color: var(--text);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.activity-date span {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+@media (max-width: 1100px) {
+  .activity-summary-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 850px) {
+  .activity-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .activity-toolbar {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .activity-summary-grid {
+    grid-template-columns: 1fr;
+  }
+}.activity-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.activity-summary-card {
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.activity-summary-card span,
+.activity-summary-card strong {
+  display: block;
+}
+
+.activity-summary-card span {
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.activity-summary-card strong {
+  color: var(--text);
+  font-size: 21px;
+  line-height: 1.2;
+}
+
+.activity-summary-card .activity-summary-success {
+  color: var(--green);
+}
+
+.activity-summary-card .activity-summary-warning {
+  color: var(--yellow);
+}
+
+.activity-summary-card .activity-summary-danger {
+  color: var(--red);
+}
+
+.activity-toolbar {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) 210px;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.activity-toolbar input,
+.activity-toolbar select {
+  min-height: 42px;
+  padding: 9px 11px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 11px;
+}
+
+.activity-toolbar input:focus,
+.activity-toolbar select:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+.activity-toolbar input::placeholder {
+  color: var(--muted-light);
+}
+
+.activity-result-count {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.activity-integration strong,
+.activity-integration span {
+  display: block;
+}
+
+.activity-integration strong {
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.activity-integration span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.activity-request {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.activity-request strong {
+  color: var(--blue);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.activity-request code {
+  color: var(--text);
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    monospace;
+  font-size: 10px;
+}
+
+.activity-status-success,
+.activity-status-info,
+.activity-status-warning,
+.activity-status-danger,
+.activity-status-neutral {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.activity-status-success {
+  color: var(--green);
+}
+
+.activity-status-info {
+  color: var(--blue);
+}
+
+.activity-status-warning {
+  color: var(--yellow);
+}
+
+.activity-status-danger {
+  color: var(--red);
+}
+
+.activity-status-neutral {
+  color: var(--muted);
+}
+
+.activity-outcome-success,
+.activity-outcome-warning,
+.activity-outcome-danger {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.activity-outcome-success {
+  color: var(--green);
+}
+
+.activity-outcome-warning {
+  color: var(--yellow);
+}
+
+.activity-outcome-danger {
+  color: var(--red);
+}
+
+.activity-duration {
+  color: var(--text-soft);
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.activity-date strong,
+.activity-date span {
+  display: block;
+  white-space: nowrap;
+}
+
+.activity-date strong {
+  color: var(--text);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.activity-date span {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 9px;
+}
+.management-activity-action strong,
+.management-activity-action span,
+.management-activity-target strong,
+.management-activity-target span {
+  display: block;
+}
+
+.management-activity-action strong,
+.management-activity-target strong {
+  color: var(--text);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.management-activity-action span {
+  max-width: 320px;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.management-activity-target span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.management-activity-actor {
+  color: var(--text-soft);
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.management-activity-fields {
+  display: block;
+  max-width: 180px;
+  color: var(--text-soft);
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.management-activity-table td {
+  vertical-align: top;
+}
+
+@media (max-width: 1100px) {
+  .activity-summary-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 850px) {
+  .activity-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .activity-toolbar {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .activity-summary-grid {
+    grid-template-columns: 1fr;
+  }
+}

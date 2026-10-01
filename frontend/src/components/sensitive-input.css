@@ -1,0 +1,48 @@
+.sensitive-input {
+  position: relative;
+  width: 100%;
+}
+
+.sensitive-input input {
+  width: 100%;
+  padding-right: 42px !important;
+}
+
+.sensitive-input-toggle {
+  position: absolute;
+  top: 50%;
+  right: 9px;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  transform: translateY(-50%);
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #748397;
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease;
+}
+
+.sensitive-input-toggle:hover {
+  background: #f3f6fa;
+  color: #2f6fd6;
+}
+
+.sensitive-input-toggle:focus-visible {
+  outline: 2px solid #2f6fd6;
+  outline-offset: 1px;
+}
+
+.sensitive-input-toggle svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

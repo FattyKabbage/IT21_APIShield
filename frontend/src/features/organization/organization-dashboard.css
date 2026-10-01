@@ -1,0 +1,306 @@
+.organization-dashboard-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: 28px;
+}
+
+.organization-dashboard-header h2 {
+  margin: 5px 0 7px;
+  color: var(--text);
+  font-size: 28px;
+  letter-spacing: -0.03em;
+}
+
+.organization-dashboard-header > div:first-child > p:last-child {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.organization-dashboard-account {
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.organization-dashboard-account span,
+.organization-dashboard-account strong {
+  display: block;
+}
+
+.organization-dashboard-account span {
+  margin-bottom: 4px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.organization-dashboard-account strong {
+  color: var(--text);
+  font-size: 11px;
+}
+
+.organization-dashboard-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.organization-dashboard-stat {
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.organization-dashboard-stat > span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.organization-dashboard-stat > strong {
+  display: block;
+  color: var(--text);
+  font-size: 23px;
+  line-height: 1;
+}
+
+.organization-dashboard-stat > p {
+  margin: 9px 0 0;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.organization-dashboard-stat .organization-dashboard-success {
+  color: var(--green);
+}
+
+.organization-dashboard-stat .organization-dashboard-danger {
+  color: var(--red);
+}
+
+.organization-dashboard-stat .organization-dashboard-warning {
+  color: var(--yellow);
+}
+
+.organization-dashboard-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(280px, 0.7fr);
+  align-items: start;
+  gap: 16px;
+}
+
+.organization-dashboard-link {
+  color: var(--blue);
+  font-size: 10px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.organization-dashboard-link:hover {
+  text-decoration: underline;
+}
+
+.organization-dashboard-application-list {
+  padding: 2px 24px 18px;
+}
+
+.organization-dashboard-application {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--border);
+  color: inherit;
+  text-decoration: none;
+}
+
+.organization-dashboard-application:last-child {
+  border-bottom: 0;
+}
+
+.organization-dashboard-application:hover strong {
+  color: var(--blue);
+}
+
+.organization-dashboard-application > div:first-child {
+  min-width: 0;
+}
+
+.organization-dashboard-application strong,
+.organization-dashboard-application span {
+  display: block;
+}
+
+.organization-dashboard-application strong {
+  color: var(--text);
+  font-size: 11px;
+  transition: color 0.15s ease;
+}
+
+.organization-dashboard-application > div:first-child span {
+  margin-top: 4px;
+  max-width: 460px;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 9px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.organization-dashboard-application-state {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.organization-dashboard-status-success,
+.organization-dashboard-status-danger {
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.organization-dashboard-status-success {
+  color: var(--green);
+}
+
+.organization-dashboard-status-danger {
+  color: var(--red);
+}
+
+.organization-dashboard-side {
+  display: grid;
+  gap: 16px;
+}
+
+.organization-dashboard-actions {
+  padding: 8px 18px 18px;
+}
+
+.organization-dashboard-actions a {
+  position: relative;
+  display: block;
+  padding: 14px 40px 14px 12px;
+  border-bottom: 1px solid var(--border);
+  color: inherit;
+  text-decoration: none;
+}
+
+.organization-dashboard-actions a:last-child {
+  border-bottom: 0;
+}
+
+.organization-dashboard-actions a:hover strong,
+.organization-dashboard-actions a:hover b {
+  color: var(--blue);
+}
+
+.organization-dashboard-actions strong,
+.organization-dashboard-actions span {
+  display: block;
+}
+
+.organization-dashboard-actions strong {
+  color: var(--text);
+  font-size: 11px;
+  transition: color 0.15s ease;
+}
+
+.organization-dashboard-actions span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.organization-dashboard-actions b {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  color: var(--muted);
+  font-size: 14px;
+  transition: color 0.15s ease;
+}
+
+.organization-dashboard-security {
+  padding: 22px;
+}
+
+.organization-dashboard-security h3 {
+  margin: 5px 0 7px;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.organization-dashboard-security > p:not(.section-eyebrow) {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.7;
+}
+
+.organization-dashboard-security-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 11px 0;
+  border-top: 1px solid var(--border);
+}
+
+.organization-dashboard-security-row span {
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.organization-dashboard-security-row strong {
+  color: var(--text);
+  font-size: 9px;
+}
+
+@media (max-width: 1000px) {
+  .organization-dashboard-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .organization-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .organization-dashboard-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .organization-dashboard-account {
+    text-align: left;
+  }
+
+  .organization-dashboard-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .organization-dashboard-application {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .organization-dashboard-application-state {
+    justify-content: flex-start;
+  }
+}

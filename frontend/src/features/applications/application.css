@@ -1,0 +1,669 @@
+.application-toolbar {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) 180px 160px;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.application-toolbar input,
+.application-toolbar select {
+  min-height: 42px;
+  padding: 9px 11px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 11px;
+}
+
+.application-toolbar input:focus,
+.application-toolbar select:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+.application-toolbar input::placeholder {
+  color: var(--muted-light);
+}
+
+.application-result-count {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.application-name-cell strong,
+.application-name-cell span {
+  display: block;
+}
+
+.application-name-cell strong {
+  color: var(--text);
+  font-size: 11px;
+}
+
+.application-name-cell span {
+  max-width: 400px;
+  margin-top: 4px;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 9px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.application-environment {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.application-environment.development {
+  color: var(--blue);
+}
+
+.application-environment.staging {
+  color: var(--yellow);
+}
+
+.application-environment.production {
+  color: var(--green);
+}
+
+.application-date strong,
+.application-date span {
+  display: block;
+  white-space: nowrap;
+}
+
+.application-date strong {
+  color: var(--text);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.application-date span {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.application-form-body {
+  padding: 22px 24px 5px;
+}
+
+.application-form-error {
+  display: block;
+  margin-top: 5px;
+  color: var(--red);
+  font-size: 9px;
+}
+
+.application-field-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 5px;
+}
+
+.application-field-footer > span:last-child {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.application-form-help {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   WORKSPACE NAVIGATION
+   ========================================================= */
+
+.application-workspace-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: fit-content;
+  max-width: 100%;
+  margin-bottom: 24px;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  overflow-x: auto;
+}
+
+.application-workspace-link {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border-radius: 7px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease;
+}
+
+.application-workspace-link:hover {
+  color: var(--blue);
+  background: var(--surface-soft);
+}
+
+.application-workspace-link.active {
+  color: var(--blue);
+  background: var(--blue-soft);
+}
+
+/* =========================================================
+   APPLICATION DETAIL
+   ========================================================= */
+
+.application-detail-back {
+  margin-bottom: 18px;
+}
+
+.application-detail-header {
+  align-items: center;
+}
+
+.application-detail-state {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-shrink: 0;
+}
+
+.application-detail-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.75fr);
+  gap: 16px;
+  margin-bottom: 26px;
+}
+
+.application-info-list {
+  padding: 8px 28px 22px;
+}
+
+.application-info-item {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 24px;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.application-info-item:last-child {
+  border-bottom: 0;
+}
+
+.application-info-item > span {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.application-info-item strong,
+.application-info-item code {
+  color: var(--text);
+  font-size: 10px;
+  overflow-wrap: anywhere;
+}
+
+.application-info-item code {
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    monospace;
+}
+
+.application-security-content {
+  padding: 12px 26px 24px;
+}
+
+.application-security-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.application-security-row > span {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.application-security-row > strong {
+  color: var(--text);
+  font-size: 10px;
+}
+
+.application-security-description {
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   FEATURE CARDS
+   ========================================================= */
+
+.application-feature-section {
+  margin-top: 8px;
+}
+
+.application-feature-heading {
+  margin-bottom: 16px;
+}
+
+.application-feature-heading h3 {
+  margin: 5px 0 6px;
+  color: var(--text);
+  font-size: 18px;
+}
+
+.application-feature-heading > p:last-child {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.application-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.application-feature-card {
+  min-height: 215px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 22px;
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.application-feature-number {
+  display: block;
+  margin-bottom: 22px;
+  color: var(--blue);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.application-feature-card h3 {
+  margin: 0 0 7px;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.application-feature-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+.application-detail-link {
+  width: fit-content;
+  color: var(--blue);
+  font-size: 10px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.application-detail-link:hover {
+  text-decoration: underline;
+}
+
+/* =========================================================
+   PAGINATION
+   ========================================================= */
+
+.table-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  border-top: 1px solid var(--border);
+}
+
+.table-pagination > span,
+.table-pagination-controls > span {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.table-pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* =========================================================
+   APPLICATION ACCESS
+   ========================================================= */
+
+.application-access-header {
+  align-items: center;
+}
+
+.application-access-panel {
+  overflow: hidden;
+}
+
+.application-access-count {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.application-access-developer strong,
+.application-access-developer span {
+  display: block;
+}
+
+.application-access-developer strong {
+  color: var(--text);
+  font-size: 11px;
+}
+
+.application-access-developer span {
+  max-width: 280px;
+  margin-top: 5px;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 9px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   ACCESS EMPTY STATE
+   ========================================================= */
+
+.application-access-panel .empty-state {
+  padding: 68px 24px;
+}
+
+.application-access-panel .empty-state strong {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.application-access-panel .empty-state p {
+  margin: 0 0 22px;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   ACCESS MODALS
+   ========================================================= */
+
+.application-access-modal-body {
+  padding: 28px 28px 24px;
+}
+
+.application-access-modal-description {
+  margin: 0 0 24px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.75;
+}
+
+.application-access-modal-body .form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.application-access-modal-body .form-field label {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.application-access-modal-body .application-form-help {
+  margin-top: 2px;
+  line-height: 1.65;
+}
+
+/* =========================================================
+   ASSIGN DEVELOPER
+   ========================================================= */
+
+.application-access-member-list {
+  max-height: 280px;
+  margin-top: 18px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface);
+}
+
+.application-access-member-option {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 16px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.application-access-member-option:last-child {
+  border-bottom: 0;
+}
+
+.application-access-member-option:hover {
+  background: var(--surface-soft);
+}
+
+.application-access-member-option.selected {
+  background: var(--blue-soft);
+}
+
+.application-access-member-option input {
+  flex: 0 0 auto;
+}
+
+.application-access-member-option strong,
+.application-access-member-option span {
+  display: block;
+}
+
+.application-access-member-option strong {
+  color: var(--text);
+  font-size: 10px;
+}
+
+.application-access-member-option span {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.application-access-member-empty {
+  padding: 28px 24px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* =========================================================
+   REMOVE ACCESS
+   ========================================================= */
+
+.application-access-warning {
+  padding: 20px 22px;
+  margin-bottom: 24px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface-soft);
+}
+
+.application-access-warning strong {
+  display: block;
+  color: var(--text);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.application-access-warning p {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.75;
+}
+
+.application-access-impact {
+  margin: 20px 0 24px;
+}
+
+.application-access-impact > span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.application-access-impact ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.9;
+}
+
+/* =========================================================
+   PASSWORD CONFIRMATION
+   ========================================================= */
+
+.application-access-password-field {
+  position: relative;
+}
+
+.application-access-password-field input {
+  width: 100%;
+  min-height: 46px;
+  padding-right: 66px;
+}
+
+.application-access-password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  border: 0;
+  background: transparent;
+  color: var(--blue);
+  font-size: 9px;
+  font-weight: 700;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.application-access-password-toggle:hover {
+  text-decoration: underline;
+}
+
+/* =========================================================
+   RESPONSIVE ACCESS
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .application-access-header {
+    align-items: flex-start;
+  }
+
+  .application-access-header > .button {
+    width: 100%;
+  }
+
+  .application-access-modal-body {
+    padding: 22px 20px 20px;
+  }
+
+  .application-access-warning {
+    padding: 17px 18px;
+    margin-bottom: 20px;
+  }
+
+  .application-access-panel .empty-state {
+    padding: 48px 20px;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1000px) {
+  .application-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .application-feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 850px) {
+  .application-toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .table-pagination {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .table-pagination-controls {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 700px) {
+  .application-workspace-nav {
+    width: 100%;
+  }
+
+  .application-detail-header {
+    align-items: flex-start;
+  }
+
+  .application-detail-state {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .application-info-item {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+
+  .application-form-body {
+    padding: 18px 18px 4px;
+  }
+
+  .application-feature-card {
+    min-height: auto;
+  }
+}

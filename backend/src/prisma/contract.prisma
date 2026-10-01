@@ -1,0 +1,398 @@
+enum UserRole {
+  SYSTEM_ADMIN
+  ORGANIZATION
+  DEVELOPER
+}
+
+enum AccountStatus {
+  PENDING_VERIFICATION
+  ACTIVE
+  SUSPENDED
+}
+
+enum InvitationStatus {
+  PENDING
+  ACCEPTED
+  EXPIRED
+  CANCELLED
+}
+
+enum ApplicationStatus {
+  ACTIVE
+  DISABLED
+}
+
+enum ApplicationEnvironment {
+  DEVELOPMENT
+  STAGING
+  PRODUCTION
+}
+
+model Organization {
+  id        Uuid              @id @default(uuid())
+  name      String
+  createdAt TimestamptzString @default(now())
+  updatedAt TimestamptzString @default(now())
+
+  users          User[]
+  invitations    OrganizationInvitation[]
+  applications   ClientApplication[]
+  securityEvents SecurityEvent[] @relation("SecurityEventOrganization")
+
+  @@map("organizations")
+}
+
+model User {
+  id             Uuid              @id @default(uuid())
+  email          String            @unique
+  passwordHash   String
+  role           UserRole
+  status         AccountStatus     @default(PENDING_VERIFICATION)
+  organizationId Uuid?
+  createdAt      TimestamptzString @default(now())
+  updatedAt      TimestamptzString @default(now())
+
+  organization Organization? @relation(
+    fields: [organizationId],
+    references: [id]
+  )
+
+  ownedApplication       ClientApplication?               @relation("DeveloperOwnedApplication")
+  applicationAssignments DeveloperApplicationAssignment[] @relation("DeveloperAssignmentUser")
+  securityEvents         SecurityEvent[]                   @relation("SecurityEventActor")
+  refreshSessions RefreshSession[]
+
+  @@map("users")
+}
+
+model EmailVerification {
+  id        Uuid              @id @default(uuid())
+  userId    Uuid              @unique
+  tokenHash String
+  expiresAt TimestamptzString
+  usedAt    TimestamptzString?
+
+  user User @relation(
+    fields: [userId],
+    references: [id],
+    onDelete: Cascade
+  )
+
+  @@map("email_verifications")
+}
+
+model RefreshSession {
+  id        Uuid              @id @default(uuid())
+  userId    Uuid
+  tokenHash String            @unique
+  expiresAt TimestamptzString
+  revokedAt TimestamptzString?
+  createdAt TimestamptzString @default(now())
+  updatedAt TimestamptzString @default(now())
+
+  user User @relation(
+    fields: [userId],
+    references: [id],
+    onDelete: Cascade
+  )
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("refresh_sessions")
+}
+
+model OrganizationInvitation {
+  id             Uuid              @id @default(uuid())
+  organizationId Uuid
+  email          String
+  tokenHash      String
+  expiresAt      TimestamptzString
+  acceptedAt     TimestamptzString?
+  status         InvitationStatus  @default(PENDING)
+  createdAt      TimestamptzString @default(now())
+
+  organization Organization @relation(
+    fields: [organizationId],
+    references: [id],
+    onDelete: Cascade
+  )
+
+  @@map("organization_invitations")
+}
+
+model ClientApplication {
+  id               Uuid                   @id @default(uuid())
+  organizationId   Uuid?
+  ownerDeveloperId Uuid?                  @unique
+  name             String
+  normalizedName   String
+  description      String?
+  environment      ApplicationEnvironment @default(DEVELOPMENT)
+  status           ApplicationStatus      @default(ACTIVE)
+  createdAt        TimestamptzString      @default(now())
+  updatedAt        TimestamptzString      @default(now())
+
+  organization Organization? @relation(
+    fields: [organizationId],
+    references: [id],
+    onDelete: Cascade
+  )
+
+  ownerDeveloper User? @relation(
+    "DeveloperOwnedApplication",
+    fields: [ownerDeveloperId],
+    references: [id],
+    onDelete: Cascade
+  )
+
+  developerAssignments DeveloperApplicationAssignment[] @relation("DeveloperAssignmentApplication")
+  securityEvents       SecurityEvent[]                   @relation("SecurityEventApplication")
+
+  @@unique([organizationId, normalizedName])
+  @@map("client_applications")
+}
+
+enum ApplicationCredentialStatus {
+  ACTIVE
+  REVOKED
+}
+
+model ApplicationCredential {
+  id               Uuid                        @id @default(uuid())
+  applicationId    Uuid                        @unique
+  clientId         String                      @unique
+  clientSecretHash String
+  status           ApplicationCredentialStatus @default(ACTIVE)
+  createdAt        TimestamptzString            @default(now())
+  updatedAt        TimestamptzString            @default(now())
+
+  application ClientApplication @relation(
+    fields: [applicationId],
+    references: [id],
+    onDelete: Cascade
+  )
+
+  @@map("application_credentials")
+}
+
+enum ApiIntegrationStatus {
+  ACTIVE
+  DISABLED
+}
+
+enum ApiIntegrationAuthType {
+  NONE
+  API_KEY
+  BEARER_TOKEN
+  BASIC_AUTH
+}
+
+enum ApiCredentialPlacement {
+  HEADER
+  QUERY
+}
+
+model ApiIntegration {
+  id                  Uuid                   @id @default(uuid())
+  applicationId       Uuid
+  name                String
+  normalizedName      String
+  provider            String
+  baseUrl             String
+  authType            ApiIntegrationAuthType
+  credentialPlacement ApiCredentialPlacement?
+  credentialName      String?
+  encryptedCredential String?
+  credentialIv        String?
+  credentialAuthTag   String?
+  status              ApiIntegrationStatus   @default(ACTIVE)
+  createdAt           TimestamptzString      @default(now())
+  updatedAt           TimestamptzString      @default(now())
+
+  application ClientApplication @relation(
+    fields: [applicationId],
+    references: [id],
+    onDelete: Cascade
+  )
+
+  @@unique([applicationId, normalizedName])
+  @@map("api_integrations")
+}
+
+enum GatewayRequestOutcome {
+  SUCCESS
+  PROVIDER_ERROR
+  GATEWAY_ERROR
+}
+
+model GatewayRequestLog {
+  id             Uuid                  @id @default(uuid())
+  applicationId  Uuid
+  integrationId  Uuid
+  method         String
+  path           String
+  providerStatus Int?
+  outcome        GatewayRequestOutcome
+  durationMs     Int
+  createdAt      TimestamptzString     @default(now())
+
+  application ClientApplication @relation(
+    fields: [applicationId],
+    references: [id],
+    onDelete: Cascade
+  )
+
+  integration ApiIntegration @relation(
+    fields: [integrationId],
+    references: [id],
+    onDelete: Cascade
+  )
+
+  @@index([applicationId])
+  @@index([integrationId])
+  @@index([createdAt])
+  @@map("gateway_request_logs")
+}
+
+model DeveloperApplicationAssignment {
+  id            Uuid              @id @default(uuid())
+  developerId   Uuid
+  applicationId Uuid
+  createdAt     TimestamptzString @default(now())
+
+  developer User @relation(
+    "DeveloperAssignmentUser",
+    fields: [developerId],
+    references: [id],
+    onDelete: Cascade
+  )
+
+  application ClientApplication @relation(
+    "DeveloperAssignmentApplication",
+    fields: [applicationId],
+    references: [id],
+    onDelete: Cascade
+  )
+
+  @@unique([developerId, applicationId])
+  @@index([applicationId])
+  @@map("developer_application_assignments")
+}
+
+enum SecurityEventCategory {
+  AUTHENTICATION
+  AUTHORIZATION
+  APPLICATION
+  CREDENTIAL
+  INTEGRATION
+  ORGANIZATION
+  ACCESS_CONTROL
+  SYSTEM
+}
+
+enum SecurityEventSeverity {
+  INFO
+  WARNING
+  CRITICAL
+}
+
+enum SecurityEventOutcome {
+  SUCCESS
+  FAILURE
+  DENIED
+}
+
+enum SecurityEventAction {
+  USER_LOGIN_SUCCEEDED
+  USER_LOGIN_FAILED
+  USER_LOGOUT
+
+  APPLICATION_CREATED
+  APPLICATION_UPDATED
+
+  APPLICATION_CREDENTIAL_CREATED
+  APPLICATION_CREDENTIAL_ROTATED
+
+  DEVELOPER_ASSIGNED
+  DEVELOPER_ACCESS_REMOVED
+
+  API_INTEGRATION_CREATED
+  API_INTEGRATION_UPDATED
+
+  ORGANIZATION_INVITATION_CREATED
+  ORGANIZATION_INVITATION_RESENT
+  ORGANIZATION_INVITATION_REVOKED
+  ORGANIZATION_INVITATION_ACCEPTED
+
+  ACCESS_DENIED
+}
+
+enum SecurityEventTargetType {
+  USER
+  ORGANIZATION
+  APPLICATION
+  APPLICATION_CREDENTIAL
+  DEVELOPER
+  API_INTEGRATION
+  ORGANIZATION_INVITATION
+  SYSTEM
+}
+
+model SecurityEvent {
+  id             Uuid                  @id @default(uuid())
+
+  actorUserId    Uuid?
+  actorEmail     String?
+
+  organizationId Uuid?
+  applicationId  Uuid?
+
+  category       SecurityEventCategory
+  severity       SecurityEventSeverity @default(INFO)
+  outcome        SecurityEventOutcome  @default(SUCCESS)
+
+  action         SecurityEventAction
+  targetType     SecurityEventTargetType
+  targetId       Uuid?
+  targetLabel    String?
+
+  changedFields  String?
+  description    String?
+
+  ipAddress      String?
+  userAgent      String?
+  requestId      String?
+
+  createdAt      TimestamptzString @default(now())
+
+  actor User? @relation(
+    "SecurityEventActor",
+    fields: [actorUserId],
+    references: [id],
+    onDelete: SetNull
+  )
+
+  organization Organization? @relation(
+    "SecurityEventOrganization",
+    fields: [organizationId],
+    references: [id],
+    onDelete: SetNull
+  )
+
+  application ClientApplication? @relation(
+    "SecurityEventApplication",
+    fields: [applicationId],
+    references: [id],
+    onDelete: SetNull
+  )
+
+  @@index([actorUserId])
+  @@index([organizationId])
+  @@index([applicationId])
+  @@index([category])
+  @@index([severity])
+  @@index([outcome])
+  @@index([action])
+  @@index([createdAt])
+  @@map("security_events")
+}

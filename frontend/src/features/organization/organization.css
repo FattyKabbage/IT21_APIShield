@@ -1,0 +1,471 @@
+.organization-workspace-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: fit-content;
+  max-width: 100%;
+  margin-bottom: 24px;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  overflow-x: auto;
+}
+
+.organization-workspace-link {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease;
+}
+
+.organization-workspace-link:hover {
+  color: var(--blue);
+  background: var(--surface-soft);
+}
+
+.organization-workspace-link.active {
+  color: var(--blue);
+  background: var(--blue-soft);
+}
+
+/* =========================================================
+   OVERVIEW
+   ========================================================= */
+
+.organization-summary-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.organization-summary-card {
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.organization-summary-card span,
+.organization-summary-card strong {
+  display: block;
+}
+
+.organization-summary-card span {
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.organization-summary-card strong {
+  color: var(--text);
+  font-size: 20px;
+}
+
+.organization-summary-card
+  .organization-summary-warning {
+  color: var(--yellow);
+}
+
+.organization-overview-grid {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.5fr)
+    minmax(280px, 0.8fr);
+  gap: 16px;
+}
+
+.organization-info-list {
+  padding: 8px 28px 22px;
+}
+
+.organization-info-row {
+  display: grid;
+  grid-template-columns:
+    170px minmax(0, 1fr);
+  gap: 24px;
+  padding: 15px 0;
+  border-bottom:
+    1px solid var(--border);
+}
+
+.organization-info-row:last-child {
+  border-bottom: 0;
+}
+
+.organization-info-row span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.organization-info-row strong,
+.organization-info-row code {
+  color: var(--text);
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+
+.organization-info-row code {
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    monospace;
+}
+
+.organization-owner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 28px 18px;
+}
+
+.organization-owner-avatar {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--blue-soft);
+  color: var(--blue);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.organization-owner strong,
+.organization-owner span {
+  display: block;
+}
+
+.organization-owner strong {
+  color: var(--text);
+  font-size: 12px;
+}
+
+.organization-owner span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.organization-owner-note {
+  margin: 0 28px 24px;
+  padding-top: 16px;
+  border-top:
+    1px solid var(--border);
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   MEMBERS
+   ========================================================= */
+
+.organization-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content:
+    space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.organization-toolbar input {
+  width: min(440px, 100%);
+  min-height: 42px;
+  padding: 9px 11px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: 0;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 11px;
+}
+
+.organization-toolbar input:focus {
+  border-color: var(--blue);
+  box-shadow:
+    0 0 0 3px var(--focus-ring);
+}
+
+.organization-toolbar span {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.organization-role {
+  color: var(--text-soft);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.organization-table td
+  .organization-status-success {
+  color: var(--green);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.organization-table td
+  .organization-status-warning {
+  color: var(--yellow);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.organization-table td
+  .organization-status-danger {
+  color: var(--red);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.organization-table td
+  .organization-status-neutral {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* =========================================================
+   DATE
+   ========================================================= */
+
+.organization-date strong,
+.organization-date span {
+  display: block;
+  white-space: nowrap;
+}
+
+.organization-date strong {
+  color: var(--text);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.organization-date span {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+/* =========================================================
+   INVITATIONS
+   ========================================================= */
+
+.organization-invitation-heading {
+  margin-top: 0;
+}
+
+.organization-invitation-toolbar {
+  display: grid;
+  grid-template-columns:
+    minmax(260px, 1fr)
+    180px;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.organization-invitation-toolbar
+  input,
+.organization-invitation-toolbar
+  select {
+  min-height: 42px;
+  padding: 9px 11px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 11px;
+}
+
+.organization-invitation-toolbar
+  input:focus,
+.organization-invitation-toolbar
+  select:focus {
+  border-color: var(--blue);
+  box-shadow:
+    0 0 0 3px var(--focus-ring);
+}
+
+.organization-invitation-toolbar
+  input::placeholder {
+  color: var(--muted-light);
+}
+
+.organization-result-count {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.organization-invitation-status
+  strong,
+.organization-invitation-status
+  span {
+  display: block;
+}
+
+.organization-invitation-status
+  strong {
+  color: var(--text);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.organization-invitation-status
+  span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.organization-invitation-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.organization-invitation-actions
+  button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.organization-cancel-action {
+  color: var(--red);
+}
+
+.organization-no-action {
+  color: var(--muted);
+}
+
+/* =========================================================
+   FORMS
+   ========================================================= */
+
+.organization-form-body {
+  padding: 20px 26px 5px;
+}
+
+.organization-form-error {
+  display: block;
+  margin-top: 5px;
+  color: var(--red);
+  font-size: 9px;
+}
+
+.organization-form
+  .form-help {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.organization-invite-note {
+  margin-top: 18px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-soft);
+}
+
+.organization-invite-note strong {
+  display: block;
+  color: var(--yellow);
+  font-size: 11px;
+}
+
+.organization-invite-note p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.organization-confirmation {
+  padding: 24px 26px;
+}
+
+.organization-confirmation > p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.organization-confirmation
+  > p strong {
+  color: var(--text);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .organization-overview-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 850px) {
+  .organization-invitation-toolbar {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .organization-workspace-nav {
+    width: 100%;
+  }
+
+  .organization-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .organization-info-row {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+
+  .organization-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .organization-toolbar input {
+    width: 100%;
+  }
+
+  .organization-form-body {
+    padding: 16px 18px 4px;
+  }
+
+  .organization-invitation-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}

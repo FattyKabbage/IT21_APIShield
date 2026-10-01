@@ -1,0 +1,159 @@
+.integration-toolbar {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) 180px;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.integration-toolbar input,
+.integration-toolbar select {
+  min-height: 42px;
+  padding: 9px 11px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 11px;
+}
+
+.integration-toolbar input:focus,
+.integration-toolbar select:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+.integration-toolbar input::placeholder {
+  color: var(--muted-light);
+}
+
+.integration-result-count {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.integration-name-cell strong,
+.integration-name-cell span {
+  display: block;
+}
+
+.integration-name-cell strong {
+  color: var(--text);
+  font-size: 11px;
+}
+
+.integration-name-cell span {
+  max-width: 300px;
+  margin-top: 4px;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 9px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.integration-auth-type,
+.integration-auth-detail {
+  display: block;
+}
+
+.integration-auth-type {
+  color: var(--text);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.integration-auth-detail {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.integration-date strong,
+.integration-date span {
+  display: block;
+  white-space: nowrap;
+}
+
+.integration-date strong {
+  color: var(--text);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.integration-date span {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.integration-form-body {
+  padding: 22px 28px 6px;
+}
+
+.integration-form-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 12px;
+}
+
+.integration-form-error {
+  display: block;
+  margin-top: 5px;
+  color: var(--red);
+  font-size: 9px;
+}
+
+.integration-form-help {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.integration-credential-existing {
+  display: block;
+  margin-top: 7px;
+  color: var(--green);
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.integration-security-note {
+  margin: 20px 0 14px;
+  padding: 15px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-soft);
+}
+
+.integration-security-note strong {
+  display: block;
+  color: var(--blue);
+  font-size: 10px;
+}
+
+.integration-security-note p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.6;
+}
+
+@media (max-width: 850px) {
+  .integration-toolbar {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .integration-form-body {
+    padding: 18px 18px 5px;
+  }
+
+  .integration-form-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
