@@ -30,6 +30,9 @@ coverage/
 # Archives
 *.zip
 
+*.md
+
+
 # OS / editor
 .DS_Store
 Thumbs.db
