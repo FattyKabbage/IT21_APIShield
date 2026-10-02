@@ -4,6 +4,13 @@ export type ApiCredentialPlacement = 'HEADER' | 'QUERY';
 
 export type ApiIntegrationStatus = 'ACTIVE' | 'DISABLED';
 
+export interface ApiCredentialPayload {
+  value?: string;
+  token?: string;
+  username?: string;
+  password?: string;
+}
+
 export interface ApiIntegration {
   id: string;
   applicationId: string;

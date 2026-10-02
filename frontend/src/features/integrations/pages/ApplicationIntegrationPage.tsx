@@ -153,71 +153,52 @@ export function ApplicationIntegrationPage() {
     }
   }, [page, pageCount]);
 
-  async function handleCreateIntegration(
-    payload: IntegrationFormPayload,
-  ) {
-    if (!accessToken || !applicationId) return;
+  async function handleCreateIntegration(payload: IntegrationFormPayload) {
+  if (!accessToken || !applicationId) return;
 
-    try {
-      setProcessing(true);
+  try {
+    setProcessing(true);
 
-      const createPayload: CreateApiIntegrationPayload = {
-        name: payload.name,
-        provider: payload.provider,
-        baseUrl: payload.baseUrl,
-        authType: payload.authType,
-        ...(payload.authType === 'API_KEY' &&
-        payload.credentialPlacement
-          ? {
-              credentialPlacement:
-                payload.credentialPlacement,
-            }
-          : {}),
-        ...(payload.authType === 'API_KEY' &&
-        payload.credentialName
-          ? {
-              credentialName:
-                payload.credentialName,
-            }
-          : {}),
-        ...(payload.authType !== 'NONE' &&
-        payload.providerCredential
-          ? {
-              providerCredential:
-                payload.providerCredential,
-            }
-          : {}),
-      };
+    const createPayload: CreateApiIntegrationPayload = {
+      name: payload.name,
+      provider: payload.provider,
+      baseUrl: payload.baseUrl,
+      authType: payload.authType,
+      ...(payload.authType === 'API_KEY' && payload.credentialPlacement
+        ? { credentialPlacement: payload.credentialPlacement }
+        : {}),
+      ...(payload.authType === 'API_KEY' && payload.credentialName
+        ? { credentialName: payload.credentialName }
+        : {}),
+      ...(payload.authType === 'API_KEY' && payload.providerCredential
+        ? { credential: { value: payload.providerCredential } }
+        : {}),
+      ...(payload.authType === 'BEARER_TOKEN' && payload.providerCredential
+        ? { credential: { token: payload.providerCredential } }
+        : {}),
+    };
 
-      await createApplicationIntegration(
-        accessToken,
-        applicationId,
-        createPayload,
-      );
+    await createApplicationIntegration(accessToken, applicationId, createPayload);
 
-      await loadIntegrations();
+    await loadIntegrations();
 
-      setShowCreateModal(false);
+    setShowCreateModal(false);
 
-      setFeedback({
-        type: 'success',
-        title: 'API integration created',
-        message:
-          'The third-party API integration was configured successfully.',
-      });
-    } catch (error) {
-      setFeedback({
-        type: 'error',
-        title: 'Unable to create integration',
-        message:
-          error instanceof Error
-            ? error.message
-            : 'An unexpected error occurred.',
-      });
-    } finally {
-      setProcessing(false);
-    }
+    setFeedback({
+      type: 'success',
+      title: 'API integration created',
+      message: 'The third-party API integration was configured successfully.',
+    });
+  } catch (error) {
+    setFeedback({
+      type: 'error',
+      title: 'Unable to create integration',
+      message: error instanceof Error ? error.message : 'An unexpected error occurred.',
+    });
+  } finally {
+    setProcessing(false);
   }
+}
 
   async function handleUpdateIntegration(
     payload: IntegrationFormPayload,
