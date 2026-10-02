@@ -199,17 +199,8 @@ export function ApplicationIntegrationPage() {
     setProcessing(false);
   }
 }
-
-  async function handleUpdateIntegration(
-    payload: IntegrationFormPayload,
-  ) {
-    if (
-      !accessToken ||
-      !applicationId ||
-      !integrationToEdit
-    ) {
-      return;
-    }
+  async function handleUpdateIntegration(payload: IntegrationFormPayload) {
+    if (!accessToken || !applicationId || !integrationToEdit) return;
 
     try {
       setProcessing(true);
@@ -219,31 +210,18 @@ export function ApplicationIntegrationPage() {
         provider: payload.provider,
         baseUrl: payload.baseUrl,
         authType: payload.authType,
-        status:
-          payload.status ??
-          integrationToEdit.status,
-        credentialPlacement:
-          payload.authType === 'API_KEY'
-            ? payload.credentialPlacement ?? null
-            : null,
-        credentialName:
-          payload.authType === 'API_KEY'
-            ? payload.credentialName ?? null
-            : null,
-        ...(payload.providerCredential
-          ? {
-              providerCredential:
-                payload.providerCredential,
-            }
+        status: payload.status ?? integrationToEdit.status,
+        credentialPlacement: payload.authType === 'API_KEY' ? payload.credentialPlacement ?? null : null,
+        credentialName: payload.authType === 'API_KEY' ? payload.credentialName ?? null : null,
+        ...(payload.authType === 'API_KEY' && payload.providerCredential
+          ? { credential: { value: payload.providerCredential } }
+          : {}),
+        ...(payload.authType === 'BEARER_TOKEN' && payload.providerCredential
+          ? { credential: { token: payload.providerCredential } }
           : {}),
       };
 
-      await updateApplicationIntegration(
-        accessToken,
-        applicationId,
-        integrationToEdit.id,
-        updatePayload,
-      );
+      await updateApplicationIntegration(accessToken, applicationId, integrationToEdit.id, updatePayload);
 
       await loadIntegrations();
 
@@ -252,17 +230,13 @@ export function ApplicationIntegrationPage() {
       setFeedback({
         type: 'success',
         title: 'API integration updated',
-        message:
-          'The API integration was updated successfully.',
+        message: 'The API integration was updated successfully.',
       });
     } catch (error) {
       setFeedback({
         type: 'error',
         title: 'Unable to update integration',
-        message:
-          error instanceof Error
-            ? error.message
-            : 'An unexpected error occurred.',
+        message: error instanceof Error ? error.message : 'An unexpected error occurred.',
       });
     } finally {
       setProcessing(false);
